@@ -1,0 +1,98 @@
+/*
+SQLyog Ultimate v11.11 (64 bit)
+MySQL - 5.1.36-community-log : Database - fms
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`fms` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `fms`;
+
+/*Table structure for table `batch` */
+
+DROP TABLE IF EXISTS `batch`;
+
+CREATE TABLE `batch` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `course` varchar(100) NOT NULL,
+  `fees` varchar(100) NOT NULL,
+  `starting_date` varchar(100) NOT NULL,
+  `ending_date` varchar(100) NOT NULL,
+  `time` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+/*Data for the table `batch` */
+
+insert  into `batch`(`id`,`name`,`course`,`fees`,`starting_date`,`ending_date`,`time`) values (6,'Core Java Experts','Core Java','2700','04.01.2018','04.08.2018','11am-1pm'),(5,'Java EE 10','Java EE','2500','03.28.2018','01.01.2019','1pm-3pm'),(8,'Java Debuggers','Java EE','3000','01.01.2017','06.01.2018','3pm-5pm');
+
+/*Table structure for table `fees` */
+
+DROP TABLE IF EXISTS `fees`;
+
+CREATE TABLE `fees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `batch_id` int(11) NOT NULL,
+  `dateforsubmission` varchar(100) NOT NULL,
+  `submitteddate` varchar(100) DEFAULT '-',
+  `status` varchar(100) NOT NULL,
+  `fees` varchar(100) NOT NULL,
+  `nextmonthdate` varchar(100) NOT NULL,
+  `traverse` varchar(100) NOT NULL DEFAULT 'false',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+
+/*Data for the table `fees` */
+
+insert  into `fees`(`id`,`student_id`,`batch_id`,`dateforsubmission`,`submitteddate`,`status`,`fees`,`nextmonthdate`,`traverse`) values (5,5,5,'01.27.2018','04.02.2018','submit','3000','02.27.2018','ture'),(29,3,5,'02.27.2018','04.26.2018','submit','3000','03.27.2018','ture'),(30,3,5,'03.27.2018','-','pending','3000','04.27.2018','false'),(22,10,6,'04.02.2018','04.26.2018','submit','2700','05.02.2018','false'),(23,11,5,'04.02.2018','-','pending','2500','05.02.2018','false'),(24,12,8,'04.02.2018','-','pending','3000','05.02.2018','false'),(25,13,5,'04.02.2018','-','pending','2500','05.02.2018','false'),(26,14,5,'04.02.2018','-','pending','2500','05.02.2018','false'),(27,5,5,'02.27.2018','04.02.2018','submit','3000','03.27.2018','ture'),(28,5,5,'03.27.2018','-','pending','2500','04.27.2018','false');
+
+/*Table structure for table `students` */
+
+DROP TABLE IF EXISTS `students`;
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `surname` varchar(100) NOT NULL,
+  `institude` varchar(100) NOT NULL,
+  `department` varchar(100) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `admissiondate` varchar(100) NOT NULL,
+  `batch_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+/*Data for the table `students` */
+
+insert  into `students`(`id`,`name`,`surname`,`institude`,`department`,`phone`,`email`,`admissiondate`,`batch_id`) values (13,'Asadullah','Bhatti','Mehran University','Software Engineering','03003103101','asadullah@gmail.com','04.02.2018',5),(12,'Wajahat','Jatt','SZABIST institude','Computer System Engineering','03003012123','wjahatjatt@gmail.com','04.02.2018',8),(3,'Waqar','Arain','Sindh University','Computer System Engineering','0300300031','waqar@gmail.com','03.27.2018',5),(11,'Husain','Soomro','Sindh University','Computer System Engineering','03003103101','husain@outlook.com','04.02.2018',5),(5,'Mehdi,CR','Raza','Mehran University','Software Engineering','03081212121','mehdikhadim@gmail.com','03.27.2018',5),(10,'Vijay,CR','Kumar','Mehran University','Computer System Engineering','033003030301','vijay.coder@outlook.com','04.02.2018',6),(14,'Mustafa','Khan','Sindh University','Information Technology','03003011292','mustafa@gmail.com','04.02.2018',5);
+
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `user` */
+
+insert  into `user`(`id`,`name`,`password`) values (1,'admin','admin');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
